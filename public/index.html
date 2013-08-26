@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+		<style type="text/css">
+		body {
+			padding-top: 60px;
+			padding-bottom: 40px;
+		}
+		.sidebar-nav {
+			padding: 9px 0;
+		}
+		</style>
+
+		<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    
+  	<div class="navbar navbar-fixed-top">
+  		<div class="navbar-inner">
+  			<div class="container">
+  				<a class="btn btn-navbar" data-toggle="collapse"
+  					data-target=".nav-collapse">
+  					<span class="icon-bar"></span>
+  					<span class="icon-bar"></span>
+  					<span class="icon-bar"></span>
+  				</a>
+          <a class="brand" href="/">Cloud.events</a>
+  			</div>
+  		</div>
+  	</div>
+
+  	<div class="container">
+    <div id="socketout"></div>
+</div>
+
+<script>
+var socket = io.connect();
+var nb = 0;
+var nb_errors = 0;
+var error = null;
+var start_date = new Date();
+
+socket.on('event', function(data) {
+  console.log(data);
+  var out = '<div id=\"log\"><span class=\"badge badge-info\">' + data.id + '</span>&nbsp;<b>'
+          + data.step + '</b>&nbsp;<br> ' + data.message + '<br><small>'+ new Date(data.received_at) +'</small></div><br>';
+  $('#socketout').prepend(out);
+});
+</script>
+
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/bootstrap-transition.js"></script>
+  <script src="assets/js/bootstrap-alert.js"></script>
+  <script src="assets/js/bootstrap-modal.js"></script>
+  <script src="assets/js/bootstrap-dropdown.js"></script>
+  <script src="assets/js/bootstrap-scrollspy.js"></script>
+  <script src="assets/js/bootstrap-tab.js"></script>
+  <script src="assets/js/bootstrap-tooltip.js"></script>
+  <script src="assets/js/bootstrap-popover.js"></script>
+  <script src="assets/js/bootstrap-button.js"></script>
+  <script src="assets/js/bootstrap-collapse.js"></script>
+  <script src="assets/js/bootstrap-carousel.js"></script>
+  <script src="assets/js/bootstrap-typeahead.js"></script>
+  </body>
+</html>

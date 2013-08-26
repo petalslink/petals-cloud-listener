@@ -1,0 +1,30 @@
+{
+  "name": "petals-cloud-listener",
+  "version": "0.0.0",
+  "description": "Petals Cloud Events Listener",
+  "author": "Christophe Hamerling <chamerling@linagora.com>",
+  "homepage": "http://github.com/petalslink/petals-cloud-listener",
+  "keywords": [
+    "node", "log", "websocket", "socket.io"
+  ],
+  "licenses": [{
+    "type": "MIT",
+    "url": "http://mths.be/mit"
+  }],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/petalslink/petals-cloud-listener.git"
+  },
+  "dependencies": {
+    "express": "latest",
+    "socket.io": "0.9.10",
+    "socket.io-client": "0.9.10",
+    "request" : "latest"
+  },
+  "devDependencies": {
+    "nodemon": "latest"
+  },
+  "scripts": {
+    "start": "NODE_ENV=development ./node_modules/.bin/nodemon index.js"
+  }
+}
