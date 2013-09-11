@@ -57,7 +57,8 @@ exports.group = function(req, res) {
     if (err) return res.render('500')
     res.render('events/list', {
       title : 'Events in group ' + group,
-      events : events
+      events : events,
+      group : group
     })
   })
 }

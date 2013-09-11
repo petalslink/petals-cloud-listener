@@ -1,6 +1,10 @@
 extends ../layouts/default
 
 block content
+
+  if group
+    #socketout
+
   if !events
     .alert No events
   else
@@ -11,7 +15,9 @@ block content
             blockquote
               p
                 =event
-            hr
+              if !group && event.group
+                a.title(href='/events/group/'+event.group) Show all events in group #{event.group}
+              hr
         if (pages > 1)
           .pagination
             ul
@@ -21,3 +27,14 @@ block content
           blockquote
             p
               span No events
+
+if group
+    block script
+        script
+            var socket = io.connect();
+            socket.on('event', function(data) {
+              if (data.group == '#{group}') {
+                var out = '<div class=\"link\"><span class=\"label label-info\">New</span>&nbsp;<a class=\"title\" href=\"/events/' + data._id + '\">' + data._id + '</a><blockquote><p>'+ JSON.stringify(data) +'</p></blockquote></div><hr/>';
+                $('#socketout').prepend(out);
+              }
+            });
