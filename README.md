@@ -1,25 +1,37 @@
 # Events Listener
 
+JSON events listener with MongoDB storage and live display (socket.io).
+
 ## Howto
+
+Grab the code:
 
     git clone https://github.com/petalslink/petals-cloud-listener.git
     npm install
-    node index.js
+
+Starting the server:
+
+This assumes that mongoDB is already started and configured in config/config.js
+
+    npm start
     open http://localhost:3000
 
 ## Configure
 
-Check the config.js file and adapt it to your needs...
+Check the config/config.js file and adapt it to your needs...
 
 ## API
 
 HTTP Post log data to http://localhost:3000/events with format:
 
     {
-      'id' : 'XXX',
+      'event_id' : 'XXX',
       'step' : 'a step in . format = foo.bar.baz',
-      'message' : 'The log message',
+      'message' : 'The log message'
     }
+
+Note: JSON payload is not strict: You can post whatever JSON payload you want to the events resource.
+It will be handled by the system without any problem.
 
 ## License
 

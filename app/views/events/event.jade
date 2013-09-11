@@ -1,0 +1,9 @@
+extends ../layouts/default
+
+block content
+  .link
+    a.title(href='/events/'+event._id) #{event._id}
+    blockquote
+      p
+        =event
+    hr

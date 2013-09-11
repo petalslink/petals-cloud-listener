@@ -1,0 +1,23 @@
+extends ../layouts/default
+
+block content
+  if !events
+    .alert No events
+  else
+      if events.length >= 1
+        each event in events
+          .link
+            a.title(href='/events/'+event._id) #{event._id}
+            blockquote
+              p
+                =event
+            hr
+        if (pages > 1)
+          .pagination
+            ul
+              != createPagination(pages, page)
+      else
+        .link
+          blockquote
+            p
+              span No events

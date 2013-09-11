@@ -1,0 +1,16 @@
+extends ./layouts/default
+
+block content
+    .row
+        #socketinfo
+            .alert.alert-info Waiting for events...
+        #socketout
+
+block script
+    script.
+        var socket = io.connect();
+        socket.on('event', function(data) {
+          $('#socketinfo').hide();
+          var out = '<div class=\"link\"><a class=\"title\" href=\"/events/' + data._id + '\">' + data._id + '</a><blockquote><p>'+ JSON.stringify(data) +'</p></blockquote></div><hr/>';
+          $('#socketout').prepend(out);
+        });
