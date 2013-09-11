@@ -50,6 +50,18 @@ exports.search = function(req, res) {
   });
 }
 
+exports.group = function(req, res) {
+  var group = req.param('group')
+
+  Event.group(group, function(err, events) {
+    if (err) return res.render('500')
+    res.render('events/list', {
+      title : 'Events in group ' + group,
+      events : events
+    })
+  })
+}
+
 exports.list = function(req, res){
   var page = req.param('page') > 0 ? req.param('page') : 0
   var perPage = 10

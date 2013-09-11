@@ -6,6 +6,7 @@ module.exports = function (app, config, io) {
 
   var events = require('../app/controllers/events')
   app.get('/events', events.list)
+  app.get('/events/group/:group', events.group)
   app.get('/events/:id', events.show)
   //app.put('/events/:id', events.update)
   app.del('/events/:id', events.destroy)

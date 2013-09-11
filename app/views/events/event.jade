@@ -6,4 +6,8 @@ block content
     blockquote
       p
         =event
+
+    if event.group
+      a.title(href='/events/group/'+event.group) Show all events in group #{event.group}
+
     hr

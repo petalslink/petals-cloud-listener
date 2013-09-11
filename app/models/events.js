@@ -1,7 +1,17 @@
+/**
+ * We need to define a minimal schema for the Event object in order to be able to retrieve attributes.
+ * If not, we are not able to use attributes in templates, ...
+ * TODO : Find why logging the event show all attributes but we can not access to them in js nor jade ie undefined.
+ *
+ * @type {*}
+ */
+
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema;
 
 var EventSchema = new Schema({
+    event_id : {type : String},
+    group : { type : String},
     received_at : { type : Date, default: Date.now }
   },
   {
@@ -46,6 +56,18 @@ EventSchema.statics = {
       .sort({'received_at': -1}) // sort by date
       .limit(options.perPage)
       .skip(options.perPage * options.page)
+      .exec(cb)
+  },
+
+  /**
+   * Get a list of events which belongs to the same group
+   *
+   * @param category
+   * @param cb
+   */
+  group: function(group, cb) {
+    this.find({'group' : group})
+      .sort({'received_at': -1})
       .exec(cb)
   }
 }
