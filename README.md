@@ -1,6 +1,6 @@
 # Events Listener
 
-JSON events listener with MongoDB storage and live display (socket.io).
+JSON events listener with MongoDB storage and live display (powered by socket.io).
 
 ## Howto
 
@@ -22,16 +22,27 @@ Check the config/config.js file and adapt it to your needs...
 
 ## API
 
-HTTP Post log data to http://localhost:3000/events with format:
+HTTP Post JSON data to http://localhost:3000/events with format:
 
     {
       'event_id' : 'XXX',
       'step' : 'a step in . format = foo.bar.baz',
-      'message' : 'The log message'
+      'message' : 'The log message',
+      'group' : 'my-group-001'
     }
 
 Note: JSON payload is not strict: You can post whatever JSON payload you want to the events resource.
 It will be handled by the system without any problem.
+
+## Features
+
+- Live display of received events with socket.io
+- Events are stored with mongodb
+- Group events with 'group' parameter: Events will be displayed accordingly...
+- Group page is displaying new events of the group dynamically
+- ...
+
+![Group listing](http://f.cl.ly/items/082j0x2V34381v0w3p0J/cloudlistener-group.png)
 
 ## License
 
