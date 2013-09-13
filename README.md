@@ -42,6 +42,40 @@ It will be handled by the system without any problem.
 - Group page is displaying new events of the group dynamically
 - ...
 
+## Deploying
+
+### Heroku
+
+This assumes that you already have an Heroku account... Heroku is used to deploy and run the nodejs part of the application.
+The mongo part is handled with the help of Heroku add-ons has explained at https://addons.heroku.com.
+
+Let's go:
+
+    # Clone this repo
+    git clone https://github.com/petalslink/petals-cloud-listener.git
+
+    # deploy your app
+    heroku create MYAPP_NAME
+
+In order to keep the application awake on Heroku, you will have adapt config/config.js and set an the HEARTBEAT_URL env like this:
+
+    heroku config:add HEARTBEAT_URL=http://MYAPP_NAME.herokuapp.com/heartbeat
+
+Configure mongodb:
+
+    # Add mongolab add-on
+    heroku addons:add mongolab
+
+    # get the MONGOLAB_URI
+    heroku config:set -a MYAPP_NAME | grep MONGOLAB_URI`
+
+    # Push the application to heroku remote will deploy it on http://MYAPP_NAME.herokuapp.com
+    git push heroku master
+
+Note: You can check env variables with
+
+    heroku config
+
 ![Group listing](http://f.cl.ly/items/082j0x2V34381v0w3p0J/cloudlistener-group.png)
 
 ## License

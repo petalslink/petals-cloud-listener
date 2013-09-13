@@ -32,4 +32,9 @@ module.exports = function (app, config, io) {
     }
   })
 
+  // heartbeat
+  app.get('/heartbeat', function(req, res) {
+    res.send('alive');
+  })
+
 }

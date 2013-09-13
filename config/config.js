@@ -22,6 +22,10 @@ module.exports = {
     notifier: notifier,
     app: {
       name: 'Petals Cloud'
+    },
+    heartbeat: {
+      active: true,
+      period: 20000
     }
   },
   test: {
@@ -32,9 +36,24 @@ module.exports = {
     notifier: notifier,
     app: {
       name: 'Petals Cloud.test'
+    },
+    heartbeat: {
+      active: true,
+      period: 20000
     }
   },
-  production: {
-    // TODO
+  heroku: {
+    port: process.env.PORT || 3000,
+    host: process.env.HOSTNAME || 'localhost',
+    db: process.env.MONGOLAB_URI,
+    root: rootPath,
+    notifier: notifier,
+    app: {
+      name: 'Events Listener'
+    },
+    heartbeat: {
+      active: true,
+      period: 20000
+    }
   }
 }

@@ -34,7 +34,22 @@ server.listen(app.get('port'), function(err) {
     throw e;
   }
   console.log(config.app.name + ' app started on port ' + port)
+  heartbeat();
 })
+
+function heartbeat() {
+  if (!config.heartbeat.active) {
+    return;
+  }
+
+  setInterval(function() {
+    var url = process.env.HEARTBEAT_URL || 'http://' + config.host + ':' + config.port + '/heartbeat';
+    http.get(url, function(res) {
+    }).on('error', function(e) {
+        console.log('Can not ping heartbeat url', e);
+    })
+  }, config.heartbeat.period || 20000);
+}
 
 // expose app
 exports = module.exports = app
